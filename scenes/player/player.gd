@@ -6,6 +6,7 @@ onready var health_bar = owner.get_node("UI/HealthBar")
 onready var statues_ui = owner.get_node("UI/Statues")
 
 func _ready():
+	# Engine.time_scale = 0.1
 	max_health = 100
 	health = 100
 	speed = 250

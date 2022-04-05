@@ -43,29 +43,16 @@ margin_bottom = 62.0
 custom_fonts/font = ExtResource( 4 )
 text = "Begin"
 
-[node name="EventBox" type="VBoxContainer" parent="."]
+[node name="PointsLabel" type="Label" parent="."]
 margin_top = 66.0
 margin_right = 944.0
-margin_bottom = 486.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-alignment = 2
-
-[node name="EventSlider" parent="EventBox" instance=ExtResource( 2 )]
-margin_top = 336.0
-margin_right = 944.0
-margin_bottom = 376.0
-
-[node name="EventSlider2" parent="EventBox" instance=ExtResource( 2 )]
-margin_top = 380.0
-margin_right = 944.0
-margin_bottom = 420.0
+margin_bottom = 80.0
 
 [node name="PointsBar" type="TextureProgress" parent="."]
-margin_top = 510.0
+margin_top = 84.0
 margin_right = 944.0
-margin_bottom = 542.0
-rect_min_size = Vector2( 0, 32 )
+margin_bottom = 112.0
+rect_min_size = Vector2( 0, 28 )
 value = 100.0
 texture_progress = ExtResource( 3 )
 nine_patch_stretch = true
@@ -74,10 +61,21 @@ stretch_margin_top = 12
 stretch_margin_right = 32
 stretch_margin_bottom = 12
 
-[node name="PointsLabel" type="Label" parent="."]
-margin_top = 546.0
+[node name="EventBox" type="VBoxContainer" parent="."]
+margin_top = 116.0
 margin_right = 944.0
 margin_bottom = 560.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="EventSlider" parent="EventBox" instance=ExtResource( 2 )]
+margin_right = 944.0
+margin_bottom = 40.0
+
+[node name="EventSlider2" parent="EventBox" instance=ExtResource( 2 )]
+margin_top = 44.0
+margin_right = 944.0
+margin_bottom = 84.0
 
 [connection signal="pressed" from="Header/Reset" to="." method="_on_Reset_pressed"]
 [connection signal="pressed" from="Header/Start" to="." method="_on_Start_pressed"]

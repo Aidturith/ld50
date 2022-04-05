@@ -9,7 +9,7 @@ export var points := 0
 
 func _ready():
 	points_bar.max_value = points
-	points_label.text = str(points) + " secondes restantes" 
+	points_label.text = points_label(points)
 	if owner:
 		free_slider_queue()
 		instanciate_sliders()
@@ -32,7 +32,7 @@ func instanciate_sliders():
 		slider.max_points = max_points
 		slider.remaining = max_points
 		slider.value = event.schedule_at
-		slider.color = event.color
+		slider.color = Color(1, 0.9, 0, 0.75)
 		# slider.add_icon_override('toto', event.icon)
 		slider.set("custom_styles/grabber", event.icon)
 		slider.set("custom_styles/grabber_highlight", event.icon)
@@ -41,6 +41,9 @@ func instanciate_sliders():
 		# TODO setup custom tooltips (mobile friendly too)
 		$EventBox.add_child(slider)
 
+func points_label(seconds):
+	return str(seconds) + " secondes ᴀᴀᴀà allouer"
+	
 
 func _on_EventSlider_points_allocated():
 	var max_points = points_bar.max_value
@@ -53,7 +56,7 @@ func _on_EventSlider_points_allocated():
 		slider.remaining = remaining
 		slider.update()
 	points_bar.value = remaining
-	points_label.text = str(remaining) + " secondes restantes"
+	points_label.text = points_label(remaining)
 
 
 func _on_Start_pressed():
