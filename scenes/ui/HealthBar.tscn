@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/textures/ui/green_bar.png" type="Texture" id=1]
+
+[node name="HealthBar" type="TextureProgress"]
+margin_left = 22.0
+margin_top = 20.0
+margin_right = 534.0
+margin_bottom = 53.0
+rect_scale = Vector2( 0.75, 0.75 )
+value = 100.0
+texture_progress = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": ""
+}

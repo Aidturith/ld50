@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/textures/ui/poison_icon.png" type="Texture" id=1]
+[ext_resource path="res://scenes/ui/EventSlider.gd" type="Script" id=2]
+
+[node name="EventSlider" type="HSlider"]
+margin_right = 1024.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 0, 40 )
+size_flags_horizontal = 3
+size_flags_vertical = 1
+custom_icons/grabber_highlight = ExtResource( 1 )
+custom_icons/grabber = ExtResource( 1 )
+max_value = 300.0
+step = 5.0
+value = 150.0
+script = ExtResource( 2 )
+
+[node name="Debounce" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="value_changed" from="." to="." method="_on_EventSlider_value_changed"]
