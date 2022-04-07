@@ -18,7 +18,6 @@ func _ready():
 	#font = DynamicFont.new()
 	#font.font_data = load("res://resources/fonts/red_hat_mono.tres")
 	font.size = 20
-	print(font.font_data)
 
 
 func _physics_process(_delta):

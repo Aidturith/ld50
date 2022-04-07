@@ -25,10 +25,8 @@ func _physics_process(delta):
 	move_and_slide(direction * speed)
 
 	# sword
-	if direction != Vector2.ZERO:
-		$Sword.rotation = direction.angle()
 	if Input.is_action_just_pressed("action_1"):
-		$Sword.attack()
+		$Sword.attack(direction)
 	
 	# look_at(get_global_mouse_position())
 	#if Input.is_action_pressed("player_shoot"):

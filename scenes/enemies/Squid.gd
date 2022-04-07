@@ -12,16 +12,21 @@ var base_damage := 10
 
 var target = null
 
+# nodes
+onready var health_bar = $UI/HealthBar
+
 
 func _ready():
 	max_health = 100
-	health = 100
-	speed = 100
+	health = max_health
+	health_bar.value = max_health
+	speed = 75
 	player = owner.get_node('Player')
 	# player = get_tree().root.get_node("Root/Player")
 	# player =  get_tree().get_current_scene()
 	# get_tree().get_root().find_node("node_name")
 	rng.randomize()
+	$AnimationPlayer.play("Float")
 	
 	
 func _physics_process(delta):
@@ -79,10 +84,12 @@ func _on_Behaviour_timeout():
 	if bounce_countdown > 0:
 		bounce_countdown = bounce_countdown - 1
 
-func hit(damage):
+func hit(damage, direction):
 	health -= damage
 	if health > 0:
-		$Player.play("Hit")
+		health_bar.visible = true
+		health_bar.value = health
+		health_bar.get_node("AnimationPlayer").play("Hit")
 	else:
 		get_tree().queue_delete(self)
 

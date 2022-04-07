@@ -1,25 +1,28 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/textures/enemies/weird_squid.png" type="Texture" id=1]
 [ext_resource path="res://scenes/enemies/Squid.gd" type="Script" id=2]
 [ext_resource path="res://assets/textures/effects/cloud_edit.png" type="Texture" id=3]
 [ext_resource path="res://assets/audio/cloud.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/audio/cloud2.wav" type="AudioStream" id=5]
+[ext_resource path="res://scenes/ui/HealthBar.tscn" type="PackedScene" id=6]
 
-[sub_resource type="Animation" id=2]
-resource_name = "Hit"
-length = 0.2
+[sub_resource type="Animation" id=8]
+resource_name = "Float"
+length = 2.0
+loop = true
+step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/path = NodePath("Sprite:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 3 ), Vector2( 0, 0 ) ]
 }
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -101,7 +104,7 @@ tracks/5/keys = {
 "values": [ true ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Label:text")
+tracks/6/path = NodePath("UI/Label:text")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -123,19 +126,36 @@ height = 60.6667
 [sub_resource type="CircleShape2D" id=3]
 radius = 100.0
 
+[sub_resource type="Animation" id=2]
+resource_name = "Hit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
 [node name="Squid" type="KinematicBody2D" groups=["entities"]]
 scale = Vector2( 1.5, 1.5 )
 collision_layer = 4
 collision_mask = 3
 script = ExtResource( 2 )
 
-[node name="Player" type="AnimationPlayer" parent="."]
-anims/Hit = SubResource( 2 )
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Float = SubResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, 3 )
 scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 1 )
 
@@ -180,11 +200,27 @@ collision_layer = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]
 shape = SubResource( 3 )
 
-[node name="Label" type="Label" parent="."]
+[node name="UI" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Label" type="Label" parent="UI"]
 margin_left = -10.6667
 margin_top = -32.0
 margin_right = 29.3333
 margin_bottom = -18.0
+
+[node name="HealthBar" parent="UI" instance=ExtResource( 6 )]
+visible = false
+modulate = Color( 1, 1, 1, 0.501961 )
+margin_left = -21.3333
+margin_top = 16.0
+margin_right = 42.6667
+margin_bottom = 28.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/HealthBar"]
+root_node = NodePath("../../..")
+anims/Hit = SubResource( 2 )
 
 [connection signal="body_entered" from="Attacks/Fart" to="." method="_on_Fart_body_entered"]
 [connection signal="timeout" from="Timers/Behaviour" to="." method="_on_Behaviour_timeout"]

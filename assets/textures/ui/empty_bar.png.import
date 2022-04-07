@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/white_floor_tiles.png-2c04e84df94fc528c61f3661ca6efb68.stex"
+path="res://.import/empty_bar.png-205813a5ec8ff1cb32151a8a5874d7ab.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/tilesets/white_floor_tiles.png"
-dest_files=[ "res://.import/white_floor_tiles.png-2c04e84df94fc528c61f3661ca6efb68.stex" ]
+source_file="res://assets/textures/ui/empty_bar.png"
+dest_files=[ "res://.import/empty_bar.png-205813a5ec8ff1cb32151a8a5874d7ab.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
