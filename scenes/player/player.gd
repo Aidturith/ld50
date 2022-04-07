@@ -5,6 +5,8 @@ export onready var statues := []
 onready var health_bar = owner.get_node("UI/HealthBar")
 onready var statues_ui = owner.get_node("UI/Statues")
 
+var last_direction := Vector2.DOWN
+
 func _ready():
 	# Engine.time_scale = 0.1
 	max_health = 100
@@ -22,11 +24,13 @@ func _physics_process(delta):
 	var up := Input.get_action_strength("ui_up")
 	var input_vector := Vector2(right - left, down - up)
 	var direction := input_vector.normalized()
+	if direction != Vector2.ZERO:
+		last_direction = direction
 	move_and_slide(direction * speed)
 
 	# sword
 	if Input.is_action_just_pressed("action_1"):
-		$Sword.attack(direction)
+		$Sword.attack(last_direction)
 	
 	# look_at(get_global_mouse_position())
 	#if Input.is_action_pressed("player_shoot"):
