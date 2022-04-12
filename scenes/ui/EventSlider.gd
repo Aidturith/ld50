@@ -34,8 +34,21 @@ func _draw():
 	var a = Vector2(rect_size.x * (value / max_value), 20)
 	draw_line(a, b, color, 3.0, true)
 	var grabber_x = rect_size.x * (value / max_value)
-	var c = Vector2(grabber_x - 2, 50)
+	var c = Vector2(grabber_x + 32, 25)
 	draw_string(font, c, str(value))
+	
+
+#func _make_custom_tooltip(text):
+	# This exists, and is a Control node, with a panel-container and label inside of it
+	#var tooltip = preload("res://scenes/ui/ToolTip.tscn").instance()
+	#tooltip.get_node("Label").text = text
+	#return tooltip
+	
+func _make_custom_tooltip(text):
+	var label = Label.new()
+	label.text = text
+	label.set_position(Vector2(50, 100))
+	return label
 
 
 func min_bound():

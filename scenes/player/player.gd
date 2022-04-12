@@ -11,7 +11,7 @@ func _ready():
 	# Engine.time_scale = 0.1
 	max_health = 100
 	health = 100
-	speed = 250
+	speed = 200
 	health_bar.max_value = max_health
 
 func _physics_process(delta):
@@ -74,9 +74,15 @@ func hit(damage):
 	health_bar.value = health
 	if health <= 0:
 		game_over()
-	# TODO spawn many labels to handle multiple inputs ?
-	$UI/Hit.text = String(damage)
 	$UI/Player.play("Hit")
+	# spawn a new label
+	var label_scene = load("res://scenes/ui/HitLabel.tscn")
+	var label = label_scene.instance()
+	label.text = String(damage)
+	label.get_node('AnimationPlayer').play('MoveUp')
+	add_child(label)
+	yield(get_tree().create_timer(2.0), "timeout")
+	label.queue_free()
 	
 	
 func game_over():

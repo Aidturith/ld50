@@ -36,6 +36,7 @@ action_1={
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Walls"
 2d_physics/layer_3="Enemies"
+2d_physics/layer_4="Props"
 
 [physics]
 

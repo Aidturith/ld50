@@ -12,7 +12,6 @@ size_flags_vertical = 1
 custom_icons/grabber_highlight = ExtResource( 1 )
 custom_icons/grabber = ExtResource( 1 )
 max_value = 300.0
-step = 5.0
 value = 150.0
 script = ExtResource( 2 )
 

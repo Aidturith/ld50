@@ -4,6 +4,8 @@ export var paused := true
 
 # TODO use os time ?
 onready var time := 0.0
+onready var label := $EventLabel
+onready var label_anim := $EventLabel/AnimationPlayer
 
 
 func _process(delta):
@@ -32,6 +34,8 @@ func handle_event(event):
 	var source = event.get_node(event.source)
 	var target = event.get_node(event.target)
 	if source and target:
+		label.text = event.title
+		label_anim.play("EventCall")
 		print_debug(source, " ", action, " ", target)
 		# target.emit_signal("some_signal")
 		source.call_deferred(action, target)
